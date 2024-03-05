@@ -1,0 +1,60 @@
+dialog {
+  width: 400px;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  z-index: 100;
+  overflow: hidden;
+  background-color: rgb(63, 65, 65);
+
+}
+
+.close-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  margin-bottom: 20px;
+  outline: none;
+}
+
+.close-icon::before,
+.close-icon::after {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 30px;
+  background-color: white;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.close-icon::before {
+  transform: rotate(45deg);
+}
+
+.close-icon::after {
+  transform: rotate(-45deg);
+}
+
+.details {
+  flex-grow: 1;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.description {
+  margin-bottom: 10px;
+}
+
+.release-date {
+  font-style: italic;
+  color: #666;
+}
