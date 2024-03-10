@@ -1,0 +1,16 @@
+.genres-menu {
+  color: #fff;
+  text-align: center;
+}
+
+.genre-item {
+  background-color: rgb(63, 65, 65);
+  font-size: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border-radius: 30px;
+  transition: all .3s ease;
+}
+
+.genre-item:hover {
+    background-color: rgb(94, 94, 94);
+  }

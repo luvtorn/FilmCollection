@@ -38,3 +38,48 @@ h1 {
 img {
   width: 400px;
 }
+
+.exit-button {
+  background-color: #ff4d4f;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  float: left;
+}
+
+.exit-button:hover {
+  background-color: #ff7875;
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 390px) {
+  .container {
+    width: 380px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    max-width: 90%;
+  }
+}

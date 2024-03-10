@@ -1,13 +1,11 @@
 import "./App.css";
-import MainPage from "./MainPage/MainPage";
-import Tabs from "./MyTabs";
+import Tabs from "./Tabs/MyTabs";
 
 function App() {
   return (
-    <>
-      <MainPage />
+    <div className="main-content">
       <Tabs />
-    </>
+    </div>
   );
 }
 

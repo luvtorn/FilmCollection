@@ -31,7 +31,7 @@ export default function MainPage() {
   }, [fetchFilms]);
 
   return (
-    <div className="container">
+    <div className="top-films">
       <Input className="find-film-input" placeholder="Find your film" value={filterFilm} onChange={(e) => setFilterFilm(e.target.value)}/>
       <ul>
         {films.results ? (
@@ -39,7 +39,6 @@ export default function MainPage() {
             return (
               <li key={film.id}>
                 <FilmCard
-                  path={film.backdrop_path}
                   filmData={film}
                 />
               </li>

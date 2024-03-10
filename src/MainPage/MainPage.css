@@ -1,7 +1,9 @@
-.container {
+.top-films {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  position: sticky;
+  top: 0;
 }
 
 ul {
