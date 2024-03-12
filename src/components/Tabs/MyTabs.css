@@ -4,6 +4,7 @@
 
 .tabs {
   left: 0;
+  right: 10px;
   position: absolute;
 }
 
@@ -11,5 +12,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  padding: 10px 20px 0 0;
   height: 100vh;
 }
+

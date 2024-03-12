@@ -6,14 +6,16 @@ function Films() {
   const [selectedGenre, setSelectedGenre] = useState(null);
 
   const handleExit = () => {
-    setSelectedGenre(null)
-  }
+    setSelectedGenre(null);
+  };
 
   return (
     <>
       {selectedGenre ? (
         <>
-        <button className="exit-button" onClick={handleExit}>Exit</button>
+          <button className="exit-button" onClick={handleExit}>
+            Exit
+          </button>
           <FilmsOnGenres genre={selectedGenre} />
         </>
       ) : (

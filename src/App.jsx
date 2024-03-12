@@ -1,5 +1,4 @@
-import "./App.css";
-import Tabs from "./Tabs/MyTabs";
+import Tabs from "./components/Tabs/MyTabs";
 
 function App() {
   return (

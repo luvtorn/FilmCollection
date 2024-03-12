@@ -4,6 +4,7 @@ import { Spin, Pagination } from "antd";
 
 function FilmsOnGenres(genre) {
   const [filmsByGenre, setFilmsByGenre] = useState([]);
+  const [page, setPage] = useState(1);
 
   const options = {
     method: "GET",
@@ -16,21 +17,28 @@ function FilmsOnGenres(genre) {
 
   const fetchfilmsByGenre = useCallback(async () => {
     const res = await fetch(
-      `https://api.themoviedb.org/3/discover/movie?language=en-US&page=1&sort_by=popularity.desc&with_genres=${genre.genre}`,
+      `https://api.themoviedb.org/3/discover/movie?language=en-US&page=${page}&sort_by=popularity.desc&with_genres=${genre.genre}`,
       options
     );
     const filmsByGenre = await res.json();
     setFilmsByGenre(filmsByGenre);
-  }, [filmsByGenre]);
+  }, [filmsByGenre, page]);
 
   useEffect(() => {
     fetchfilmsByGenre();
-  }, [fetchfilmsByGenre]);
+  }, [page]);
 
   console.log(filmsByGenre);
 
   return (
     <div>
+      <Pagination
+        className="pagination"
+        onChange={(e) => setPage(e)}
+        current={page}
+        total={filmsByGenre.total_pages}
+        showSizeChanger={false}
+      />
       <ul>
         {filmsByGenre.results ? (
           filmsByGenre.results.map((film) => {
@@ -44,7 +52,6 @@ function FilmsOnGenres(genre) {
           <Spin style={{ margin: "0 auto" }} tip="Loading" size="large" />
         )}
       </ul>
-      <Pagination className="pagination" defaultCurrent={1} total={50} />
     </div>
   );
 }

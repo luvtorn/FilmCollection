@@ -60,10 +60,8 @@ img {
   flex-wrap: nowrap;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+.pagination li {
+  background-color: #fff !important;
 }
 
 @media (max-width: 768px) {

@@ -17,7 +17,7 @@ ul {
 }
 
 li {
-  width: calc(33.33% - 20px);
+  width: calc(25% - 20px);
   margin-bottom: 20px;
 }
 
