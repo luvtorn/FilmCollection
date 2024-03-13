@@ -2,19 +2,20 @@
   padding: 20px;
 }
 
-.ant-carousel {
+.carousel-item {
+  text-align: center;
   border-radius: 8px;
   overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.ant-carousel .slick-slide {
-  text-align: center;
-  background: #f0f0f0;
-  border-radius: 8px;
+.carousel-item h3 {
+  margin: 10px 0;
+  font-size: 18px;
+  color: #333;
 }
 
-.ant-carousel .slick-slide img {
+.carousel-item img {
   max-width: 100%;
   height: auto;
-  border-radius: 8px;
 }

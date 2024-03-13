@@ -1,34 +1,24 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import FilmCard from "../FilmCard/FilmCard";
+import { filmsService } from "../../services/film.service";
 import { Spin, Pagination } from "antd";
 
 function FilmsOnGenres(genre) {
   const [filmsByGenre, setFilmsByGenre] = useState([]);
   const [page, setPage] = useState(1);
 
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNGU1ZTBiZjU2OTk5MTM2MjVlNTczMmJlMWRmNzgyNiIsInN1YiI6IjY1ZTI4NmRkZGI3MmMwMDE3Y2Y1MDkyYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Es6eAgreUvmnlH11qO6vzVOFGcxENSUqxX3OpRIN81Q",
-    },
-  };
-
-  const fetchfilmsByGenre = useCallback(async () => {
-    const res = await fetch(
-      `https://api.themoviedb.org/3/discover/movie?language=en-US&page=${page}&sort_by=popularity.desc&with_genres=${genre.genre}`,
-      options
-    );
-    const filmsByGenre = await res.json();
-    setFilmsByGenre(filmsByGenre);
-  }, [filmsByGenre, page]);
-
   useEffect(() => {
-    fetchfilmsByGenre();
-  }, [page]);
+    const fetchNewFilms = async () => {
+      try {
+        const data = await filmsService.getData("", genre.genre, page);
+        setFilmsByGenre(data);
+      } catch (error) {
+        console.error("Ошибка при загрузке фильмов:", error);
+      }
+    };
 
-  console.log(filmsByGenre);
+    fetchNewFilms();
+  }, [page]);
 
   return (
     <div>
