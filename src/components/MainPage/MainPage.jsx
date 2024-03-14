@@ -36,11 +36,8 @@ function MainPage() {
         {films.results?.map((film) => {
           return (
             <div className="carousel-item" key={film.id}>
-              <h3>{film.title}</h3>
-              <img
-                src={`https://image.tmdb.org/t/p/original${film.poster_path}`}
-                alt=""
-              />
+                <h3>{film.title}</h3>
+                <img src={`https://image.tmdb.org/t/p/original${film.poster_path}`} alt="" />
             </div>
           );
         })}

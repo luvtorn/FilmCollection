@@ -2,7 +2,7 @@ import { useState } from "react";
 import Genres from "../Genres/Genres";
 import FilmsOnGenres from "../FilmsOnGenres/FilmsOnGenres";
 
-function Films() {
+function Films({ setId }) {
   const [selectedGenre, setSelectedGenre] = useState(null);
 
   const handleExit = () => {
@@ -16,7 +16,7 @@ function Films() {
           <button className="exit-button" onClick={handleExit}>
             Exit
           </button>
-          <FilmsOnGenres genre={selectedGenre} />
+          <FilmsOnGenres genre={selectedGenre} setId={setId} />
         </>
       ) : (
         <Genres setGenre={setSelectedGenre} />

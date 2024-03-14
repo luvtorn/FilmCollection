@@ -32,7 +32,7 @@ export default function Modal({
           <p className="title">{filmData.title}</p>
           <p className="description">{filmData.overview}</p>
           <p className="release-date">Release date: {filmData.release_date}</p>
-          <p className="raiting">Raiting: {filmData.vote_average.toFixed(2)} <StarOutlined /></p>
+          <p className="raiting">Raiting: {filmData.vote_average?.toFixed(2)} <StarOutlined /></p>
           <p className="raiting">Quantity: {filmData.vote_count}</p>
         </div>
       </div>

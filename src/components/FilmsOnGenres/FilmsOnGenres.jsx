@@ -3,14 +3,14 @@ import FilmCard from "../FilmCard/FilmCard";
 import { filmsService } from "../../services/film.service";
 import { Spin, Pagination } from "antd";
 
-function FilmsOnGenres(genre) {
+function FilmsOnGenres({genre, setId}) {
   const [filmsByGenre, setFilmsByGenre] = useState([]);
   const [page, setPage] = useState(1);
 
   useEffect(() => {
     const fetchNewFilms = async () => {
       try {
-        const data = await filmsService.getData("", genre.genre, page);
+        const data = await filmsService.getData("", genre, page);
         setFilmsByGenre(data);
       } catch (error) {
         console.error("Ошибка при загрузке фильмов:", error);
@@ -34,7 +34,7 @@ function FilmsOnGenres(genre) {
           filmsByGenre.results.map((film) => {
             return (
               <li key={film.id}>
-                <FilmCard filmData={film} />
+                <FilmCard filmData={film} setWishFilmId={setId}/>
               </li>
             );
           })
