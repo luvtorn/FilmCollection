@@ -37,7 +37,6 @@ class WishListService {
   };
 
   async getData({ id }) {
-    console.log(id);
     const url = `https://api.themoviedb.org/3/movie/${id}`;
     const data = await axios.get(url, this.#options);
     return data;

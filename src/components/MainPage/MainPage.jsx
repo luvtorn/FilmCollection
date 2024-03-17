@@ -20,7 +20,6 @@ function MainPage() {
       try {
         const data = await filmsService.getData('mainPage');
         setFilms(data);
-        console.log(data)
       } catch (error) {
         console.error("Ошибка при загрузке фильмов:", error);
       }

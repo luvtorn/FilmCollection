@@ -4,7 +4,7 @@ import FilmCard from "../FilmCard/FilmCard";
 import { filmsService } from "../../services/film.service";
 import "./TopFilms.css";
 
-export default function TopFilms({ setId }) {
+export default function TopFilms({ setId, setIsAddButton }) {
   const [films, setFilms] = useState([]);
   const [filterFilm, setFilterFilm] = useState("");
 
@@ -38,7 +38,7 @@ export default function TopFilms({ setId }) {
             .map((film) => {
               return (
                 <li key={film.id}>
-                  <FilmCard filmData={film} setWishFilmId={setId} />
+                  <FilmCard filmData={film} setWishFilmId={setId} setIsAddButton={setIsAddButton}/>
                 </li>
               );
             })

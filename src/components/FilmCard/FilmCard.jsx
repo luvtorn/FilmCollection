@@ -1,17 +1,26 @@
 import { useState } from "react";
+
 import Modal from "../Modal/Modal";
-import { StarOutlined } from "@ant-design/icons";
 import "./FilmCard.css";
 
-export default function FilmCard({ filmData, setWishFilmId }) {
+import { StarOutlined } from "@ant-design/icons";
+import { message } from "antd";
+
+export default function FilmCard({ filmData, setWishFilmId, isAddButton }) {
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [messageApi, contextHolder] = message.useMessage();
 
   const handleIdClick = (id) => {
     setWishFilmId(id);
+    messageApi.open({
+      type: "success",
+      content: "Successfully added",
+    });
   };
 
   return (
     <>
+      {contextHolder}
       <Modal
         open={isOpenModal}
         title={filmData.title}
@@ -28,9 +37,14 @@ export default function FilmCard({ filmData, setWishFilmId }) {
           Raiting: {filmData.vote_average?.toFixed(2)} <StarOutlined />
         </p>
       </div>
-      <button onClick={() => handleIdClick(filmData.id)}>
-        Add to Wish List
-      </button>
+      {!isAddButton && (
+        <button
+          className="add-to-wish-btn"
+          onClick={() => handleIdClick(filmData.id)}
+        >
+          Add to Wish List
+        </button>
+      )}
     </>
   );
 }

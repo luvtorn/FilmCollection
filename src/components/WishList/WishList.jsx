@@ -1,38 +1,69 @@
 import { wishListService } from "../../services/film.service";
 import { useEffect, useState } from "react";
 import FilmCard from "../FilmCard/FilmCard";
+import "./WishList.css";
 
-function WishList(id) {
+function WishList(id, isAddButton) {
   const [wishFilms, setWishFilms] = useState([]);
 
   useEffect(() => {
-    console.log(id);
     const fetchNewFilms = async () => {
       try {
         const { data } = await wishListService.getData(id);
-        setWishFilms(data);
-        console.log(data);
+        if (!wishFilms.find((film) => film.id === data.id)) {
+          setWishFilms((prev) => [...prev, data]);
+          const saveFilms = getFilms();
+          saveFilms.push(data);
+          setFilms(saveFilms);
+        }
       } catch (error) {
         console.error("Ошибка при загрузке фильмов:", error);
       }
     };
 
     fetchNewFilms();
+
+    const localFilms = getFilms()
+    setWishFilms(localFilms)
   }, [id]);
 
-  const filmData = {
-    title: wishFilms.original_title,
-    backdrop_path: wishFilms.backdrop_path,
-    id: wishFilms.id,
-    vote_average: wishFilms.vote_average,
-    overview: wishFilms.overview,
-    release_date: wishFilms.release_date,
-    vote_count: wishFilms.vote_count,
+  const deleteFilm = (idToDelete) => {
+    const filteredFilmList = wishFilms.filter((film) => film.id !== idToDelete);
+    setWishFilms(filteredFilmList);
+    setFilms(filteredFilmList);
+  };
+
+  const getFilms = () => {
+    return JSON.parse(localStorage.getItem("films")) ?? [];
+  };
+
+  const setFilms = (film) => {
+    localStorage.setItem("films", JSON.stringify(film));
   };
 
   return (
-    <div>
-      {wishFilms.original_title ? <FilmCard filmData={filmData}/> : <h2>Films are empty</h2>}
+    <div className="wishfilms">
+      <ul>
+        {wishFilms.length > 0 ? (
+          <>
+            {wishFilms.map((elem) => (
+              <li key={elem.id}>
+                <FilmCard filmData={elem} isAddButton={isAddButton} />
+                {isAddButton && (
+                  <button
+                    className="delete-btn"
+                    onClick={() => deleteFilm(elem.id)}
+                  >
+                    Delete
+                  </button>
+                )}
+              </li>
+            ))}
+          </>
+        ) : (
+          <h2 style={{ color: "white" }}>Films are empty</h2>
+        )}
+      </ul>
     </div>
   );
 }

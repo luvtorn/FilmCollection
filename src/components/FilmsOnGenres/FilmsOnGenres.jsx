@@ -3,7 +3,7 @@ import FilmCard from "../FilmCard/FilmCard";
 import { filmsService } from "../../services/film.service";
 import { Spin, Pagination } from "antd";
 
-function FilmsOnGenres({genre, setId}) {
+function FilmsOnGenres({ genre, setId, setIsAddButton }) {
   const [filmsByGenre, setFilmsByGenre] = useState([]);
   const [page, setPage] = useState(1);
 
@@ -34,7 +34,11 @@ function FilmsOnGenres({genre, setId}) {
           filmsByGenre.results.map((film) => {
             return (
               <li key={film.id}>
-                <FilmCard filmData={film} setWishFilmId={setId}/>
+                <FilmCard
+                  filmData={film}
+                  setWishFilmId={setId}
+                  setIsAddButton={setIsAddButton}
+                />
               </li>
             );
           })
