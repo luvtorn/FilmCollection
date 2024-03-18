@@ -15,6 +15,7 @@ class FilmsService {
       "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1",
     topFilms:
       "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
+    Genres: "https://api.themoviedb.org/3/genre/movie/list",
   };
 
   async getData(type, genre, page) {

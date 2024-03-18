@@ -1,6 +1,7 @@
 import { wishListService } from "../../services/film.service";
 import { useEffect, useState } from "react";
 import FilmCard from "../FilmCard/FilmCard";
+import "../../index.css"
 import "./WishList.css";
 
 function WishList(id, isAddButton) {
@@ -42,12 +43,12 @@ function WishList(id, isAddButton) {
   };
 
   return (
-    <div className="wishfilms">
+    <div className="container">
       <ul>
         {wishFilms.length > 0 ? (
           <>
-            {wishFilms.map((elem) => (
-              <li key={elem.id}>
+            {wishFilms.map((elem, index) => (
+              <li key={elem[index]}>
                 <FilmCard filmData={elem} isAddButton={isAddButton} />
                 {isAddButton && (
                   <button

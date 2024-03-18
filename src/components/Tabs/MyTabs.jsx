@@ -7,8 +7,8 @@ import WishList from "../WishList/WishList";
 import { useState } from "react";
 
 export default function MyTabs() {
-  const [id, setId] = useState([])
-  const [isAddButton, setIsAddButton] = useState(false)
+  const [id, setId] = useState([]);
+  const [isAddButton, setIsAddButton] = useState(false);
 
   const items = [
     {
@@ -19,17 +19,17 @@ export default function MyTabs() {
     {
       key: "2",
       label: "Top 20 Films",
-      children: <TopFilms setId={setId} setIsAddButton={setIsAddButton}/>,
+      children: <TopFilms setId={setId} setIsAddButton={setIsAddButton} />,
     },
     {
       key: "3",
       label: "Genres",
-      children: <Films setId={setId} setIsAddButton={setIsAddButton}/>,
+      children: <Films setId={setId} setIsAddButton={setIsAddButton} />,
     },
     {
       key: "4",
       label: "Wish list",
-      children: <WishList id={id}  isAddButton={isAddButton}/>,
+      children: <WishList id={id} isAddButton={isAddButton} />,
     },
   ];
 

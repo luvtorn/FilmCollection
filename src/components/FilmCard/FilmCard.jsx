@@ -23,7 +23,6 @@ export default function FilmCard({ filmData, setWishFilmId, isAddButton }) {
       {contextHolder}
       <Modal
         open={isOpenModal}
-        title={filmData.title}
         setIsOpenModal={setIsOpenModal}
         filmData={filmData}
       />
