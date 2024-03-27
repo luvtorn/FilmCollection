@@ -1,11 +1,13 @@
 .tabs .ant-tabs-tab {
   color: #fff;
+  height: 50px;
 }
 
 .tabs {
   left: 0;
   right: 10px;
   position: absolute;
+  height: 400px !important;
 }
 
 .page-container {
@@ -15,4 +17,6 @@
   padding: 10px 20px 0 0;
   height: 100vh;
 }
+
+
 

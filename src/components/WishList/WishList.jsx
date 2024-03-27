@@ -1,11 +1,13 @@
 import { wishListService } from "../../services/film.service";
 import { useEffect, useState } from "react";
-import FilmCard from "../FilmCard/FilmCard";
-import "../../index.css"
+import "../../index.css";
 import "./WishList.css";
+import { CaretDownOutlined, CaretUpOutlined } from "@ant-design/icons";
+import { CSSTransition } from "react-transition-group";
 
 function WishList(id, isAddButton) {
   const [wishFilms, setWishFilms] = useState([]);
+  const [openWishList, setOpenWishList] = useState(false);
 
   useEffect(() => {
     const fetchNewFilms = async () => {
@@ -18,14 +20,14 @@ function WishList(id, isAddButton) {
           setFilms(saveFilms);
         }
       } catch (error) {
-        console.error("Ошибка при загрузке фильмов:", error);
+        console.error("Error: ", error);
       }
     };
 
     fetchNewFilms();
 
-    const localFilms = getFilms()
-    setWishFilms(localFilms)
+    const localFilms = getFilms();
+    setWishFilms(localFilms);
   }, [id]);
 
   const deleteFilm = (idToDelete) => {
@@ -44,27 +46,47 @@ function WishList(id, isAddButton) {
 
   return (
     <div className="container">
-      <ul>
-        {wishFilms.length > 0 ? (
-          <>
-            {wishFilms.map((elem, index) => (
-              <li key={elem[index]}>
-                <FilmCard filmData={elem} isAddButton={isAddButton} />
-                {isAddButton && (
-                  <button
-                    className="delete-btn"
-                    onClick={() => deleteFilm(elem.id)}
-                  >
-                    Delete
-                  </button>
-                )}
-              </li>
-            ))}
-          </>
-        ) : (
-          <h2 style={{ color: "white" }}>Films are empty</h2>
-        )}
-      </ul>
+      <div className="wish" onClick={() => setOpenWishList(!openWishList)}>
+        <p>WishList</p>
+        {openWishList ? <CaretUpOutlined /> : <CaretDownOutlined />}
+        <CSSTransition
+          in={openWishList}
+          timeout={200}
+          classNames="wish-list"
+          unmountOnExit
+        >
+          <ul className="wish-list">
+            {wishFilms.length > 0 ? (
+              wishFilms.map((elem) => (
+                <li
+                  key={elem.id}
+                  onClick={(e) => e.stopPropagation()}
+                  className="wish-item"
+                >
+                  
+                  <div className="wish-content">
+                    <img
+                      src={`https://image.tmdb.org/t/p/original${elem.poster_path}`}
+                      alt={elem.title}
+                    />
+                    <p>{elem.title}</p>
+                  </div>
+                  {isAddButton && (
+                    <button
+                      className="delete-btn"
+                      onClick={() => deleteFilm(elem.id)}
+                    >
+                      Delete
+                    </button>
+                  )}
+                </li>
+              ))
+            ) : (
+              <h2 style={{ color: "black" }}>WishList is empty</h2>
+            )}
+          </ul>
+        </CSSTransition>
+      </div>
     </div>
   );
 }

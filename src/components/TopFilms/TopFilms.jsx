@@ -14,7 +14,7 @@ export default function TopFilms({ setId, setIsAddButton }) {
         const data = await filmsService.getData("topFilms");
         setFilms(data);
       } catch (error) {
-        console.error("Ошибка при загрузке фильмов:", error);
+        console.error("Error: ", error);
       }
     };
 

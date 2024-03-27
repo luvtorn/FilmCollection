@@ -1,14 +1,16 @@
 import { Tabs } from "antd";
-import TopFilms from "../TopFilms/TopFilms";
 import "./MyTabs.css";
-import Films from "../Films/Films";
+import TopFilms from "../TopFilms/TopFilms";
 import MainPage from "../MainPage/MainPage";
 import WishList from "../WishList/WishList";
 import { useState } from "react";
+import GenreSelect from "../Select/GenreSelect";
+import FilmsOnGenres from "../FilmsOnGenres/FilmsOnGenres";
 
 export default function MyTabs() {
   const [id, setId] = useState([]);
   const [isAddButton, setIsAddButton] = useState(false);
+  const [genre, setGenre] = useState(28);
 
   const items = [
     {
@@ -19,17 +21,26 @@ export default function MyTabs() {
     {
       key: "2",
       label: "Top 20 Films",
-      children: <TopFilms setId={setId} setIsAddButton={setIsAddButton} />,
+      children: (
+        <div>
+          <WishList id={id} isAddButton={isAddButton} />,
+          <TopFilms setId={setId} setIsAddButton={setIsAddButton} />
+        </div>
+      ),
     },
     {
       key: "3",
-      label: "Genres",
-      children: <Films setId={setId} setIsAddButton={setIsAddButton} />,
-    },
-    {
-      key: "4",
-      label: "Wish list",
-      children: <WishList id={id} isAddButton={isAddButton} />,
+      label: <GenreSelect setGenre={setGenre} />,
+      children: (
+        <div>
+          <WishList id={id} isAddButton={isAddButton} />
+          <FilmsOnGenres
+            genre={genre}
+            setId={setId}
+            setIsAddButton={setIsAddButton}
+          />
+        </div>
+      ),
     },
   ];
 

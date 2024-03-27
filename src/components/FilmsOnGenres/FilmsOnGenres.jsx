@@ -13,22 +13,20 @@ function FilmsOnGenres({ genre, setId, setIsAddButton }) {
         const data = await filmsService.getData("", genre, page);
         setFilmsByGenre(data);
       } catch (error) {
-        console.error("Ошибка при загрузке фильмов:", error);
+        console.error("Error: ", error);
       }
     };
 
     fetchNewFilms();
-  }, [page]);
+  }, [page, genre]);
+
+  const handleChangePage = (e) => {
+    setPage(e);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <div>
-      <Pagination
-        className="pagination"
-        onChange={(e) => setPage(e)}
-        current={page}
-        total={filmsByGenre.total_pages}
-        showSizeChanger={false}
-      />
       <ul>
         {filmsByGenre.results ? (
           filmsByGenre.results.map((film) => {
@@ -46,6 +44,13 @@ function FilmsOnGenres({ genre, setId, setIsAddButton }) {
           <Spin style={{ margin: "0 auto" }} tip="Loading" size="large" />
         )}
       </ul>
+      <Pagination
+        className="pagination"
+        onChange={handleChangePage}
+        current={page}
+        total={filmsByGenre.total_pages}
+        showSizeChanger={false}
+      />
     </div>
   );
 }

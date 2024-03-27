@@ -16,3 +16,72 @@
 .delete-btn:hover {
   background-color: #c30000;
 }
+
+.wish-list {
+  display: flex;
+  background-color: #c5c5c5;
+  color: #000;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+  width: 400px;
+}
+
+.wish-list-enter {
+  opacity: 0;
+}
+
+.wish-list-enter-active {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+
+.wish-list-exit {
+  opacity: 1;
+}
+
+.wish-list-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+.wish {
+  position: absolute;
+  background-color: #c5c5c5;
+  top: 20px;
+  right: 20px;
+  z-index: 90;
+  text-align: center;
+  font-size: 22px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  padding: 0 10px;
+}
+
+.wish-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  color: #000;
+  border-radius: 8px;
+  width: 300px;
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 10px;
+  margin: 0;
+  list-style: none;
+}
+
+.wish-item {
+  width: 100%;
+}
+
+.wish-item img {
+  width: 100px;
+}
+
+.wish-content {
+  display: flex;
+  gap: 5px;
+}

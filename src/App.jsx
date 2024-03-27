@@ -1,11 +1,7 @@
 import Tabs from "./components/Tabs/MyTabs";
 
 function App() {
-  return (
-    <div className="main-content">
-      <Tabs />
-    </div>
-  );
+  return <Tabs />;
 }
 
 export default App;

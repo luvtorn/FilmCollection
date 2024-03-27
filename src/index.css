@@ -35,10 +35,6 @@ h1 {
   line-height: 1.1;
 }
 
-img {
-  width: 400px;
-}
-
 ul {
   list-style: none;
   padding: 0;
@@ -85,6 +81,18 @@ li {
   }
 }
 
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 700px) {
+  li {
+    width: calc(50% - 20px);
+  }
+}
+
 @media (max-width: 500px) {
   .container {
     width: 380px;
@@ -92,11 +100,5 @@ li {
 
   li {
     width: calc(100% - 20px);
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  .container {
-    max-width: 90%;
   }
 }

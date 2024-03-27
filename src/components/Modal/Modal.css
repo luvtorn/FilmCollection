@@ -1,42 +1,37 @@
-dialog {
-  width: 400px;
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 10px;
+.modal {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
   z-index: 100;
-  overflow-x: hidden;
-  background-color: rgb(63, 65, 65);
+  display: none;
 }
 
-.close-button {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  width: 20px;
-  height: 20px;
-  position: relative;
-  margin-bottom: 20px;
-  outline: none;
-}
-
-.close-icon::before,
-.close-icon::after {
-  content: "";
-  position: absolute;
-  width: 5px;
-  height: 30px;
-  background-color: white;
+.modal.active {
+  display: flex;
+  position: fixed;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
 }
 
-.close-icon::before {
-  transform: rotate(45deg);
+.modal-content {
+  background-color: rgb(63, 65, 65);
+  padding: 20px;
+  width: 80rem;
 }
 
-.close-icon::after {
-  transform: rotate(-45deg);
+.modal-img {
+  width: 350px;
+  padding: 15px;
+}
+
+.none {
+  display: none;
+}
+
+.filmInfo {
+  display: flex;
 }
 
 .details {
