@@ -1,41 +1,45 @@
-import Select from "react-select";
-import "./GenreSelect.css";
-import { useEffect, useState } from "react";
-import { filmsService } from "../../services/film.service";
+import Select from 'react-select'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
+import './GenreSelect.css'
+import { useEffect, useState } from 'react'
+import { filmsService } from '../../services/film.service'
 
 function GenreSelect({ setGenre }) {
-  const [genres, setGenres] = useState([]);
-  const [selectedGenre, setSelectedGenre] = useState("action");
+  const [genres, setGenres] = useState([])
+  const [selectedGenre, setSelectedGenre] = useState('action')
+
+  const queryClient = useQueryClient()
 
   useEffect(() => {
     const fetchNewFilms = async () => {
       try {
-        const data = await filmsService.getData("Genres");
+        const data = await filmsService.getData('Genres')
         setGenres(
-          data.genres.map((genre) => ({
+          data.data.genres.map((genre) => ({
             id: genre.id,
             value: genre.name.toLowerCase(),
             label: genre.name,
-          }))
-        );
+          })),
+        )
       } catch (error) {
-        console.error("Error: ", error);
+        console.error('Error: ', error)
       }
-    };
+    }
 
-    fetchNewFilms();
-  }, []);
+    fetchNewFilms()
+  }, [])
 
   const getSelectedGenre = () => {
     return selectedGenre
       ? genres.find((genre) => genre.value === selectedGenre)
-      : null;
-  };
+      : null
+  }
 
   const onChange = (newGenre) => {
-    setSelectedGenre(newGenre.value);
-    setGenre(newGenre.id);
-  };
+    queryClient.invalidateQueries("filmsByGenre")
+    setSelectedGenre(newGenre.value)
+    setGenre(newGenre.id)
+  }
 
   return (
     <Select
@@ -44,7 +48,7 @@ function GenreSelect({ setGenre }) {
       onChange={onChange}
       className="custom-select"
     />
-  );
+  )
 }
 
-export default GenreSelect;
+export default GenreSelect

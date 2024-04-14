@@ -1,25 +1,18 @@
-import { useEffect, useState } from "react";
-import { Spin, Input } from "antd";
-import FilmCard from "../FilmCard/FilmCard";
-import { filmsService } from "../../services/film.service";
-import "./TopFilms.css";
+import { useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import { Spin, Input } from 'antd'
+import FilmCard from '../FilmCard/FilmCard'
+import { filmsService } from '../../services/film.service'
+import './TopFilms.css'
 
 export default function TopFilms({ setId, setIsAddButton }) {
-  const [films, setFilms] = useState([]);
-  const [filterFilm, setFilterFilm] = useState("");
+  const [filterFilm, setFilterFilm] = useState('')
 
-  useEffect(() => {
-    const fetchNewFilms = async () => {
-      try {
-        const data = await filmsService.getData("topFilms");
-        setFilms(data);
-      } catch (error) {
-        console.error("Error: ", error);
-      }
-    };
-
-    fetchNewFilms();
-  }, []);
+  const { isLoading, data } = useQuery({
+    queryKey: ['topFilms'],
+    queryFn: () => filmsService.getData('topFilms'),
+    select: (data) => data,
+  })
 
   return (
     <div className="container">
@@ -31,10 +24,10 @@ export default function TopFilms({ setId, setIsAddButton }) {
           onChange={(e) => setFilterFilm(e.target.value)}
         />
         <ul>
-          {films.results ? (
-            films.results
+          {!isLoading ? (
+            data.data.results
               .filter((film) =>
-                film.title.toLowerCase().includes(filterFilm.toLowerCase())
+                film.title.toLowerCase().includes(filterFilm.toLowerCase()),
               )
               .map((film) => {
                 return (
@@ -45,13 +38,13 @@ export default function TopFilms({ setId, setIsAddButton }) {
                       setIsAddButton={setIsAddButton}
                     />
                   </li>
-                );
+                )
               })
           ) : (
-            <Spin style={{ margin: "0 auto" }} tip="Loading" size="large" />
+            <Spin style={{ margin: '0 auto' }} tip="Loading" size="large" />
           )}
         </ul>
       </div>
     </div>
-  );
+  )
 }

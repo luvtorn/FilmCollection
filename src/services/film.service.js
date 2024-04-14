@@ -22,8 +22,7 @@ class FilmsService {
     const url = genre
       ? `https://api.themoviedb.org/3/discover/movie?language=en-US&page=${page}&sort_by=popularity.desc&with_genres=${genre}`
       : this.typeOfUrl[type]
-    const { data } = await axios.get(url, options)
-    return data
+    return axios.get(url, options)
   }
 }
 
