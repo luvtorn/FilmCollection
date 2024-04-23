@@ -6,10 +6,13 @@
   transition: transform 0.3s ease;
   background-color: rgb(63, 65, 65);
   color: #e8e8e8;
+  border-radius: 10px;
+  
 }
 
 .film:hover {
   transform: translateY(-10px);
+  background-color: #838383;
 }
 
 .film img {
@@ -38,4 +41,14 @@
 
 .add-to-wish-btn:hover {
   background-color: #838383;
+}
+
+@media (max-width: 480px) {
+  .film {
+    width: 60%;
+  }
+
+  .add-to-wish-btn {
+    width: 60%;
+  }
 }

@@ -1,46 +1,51 @@
-import { useState, useEffect } from 'react';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import FilmCard from '../FilmCard/FilmCard';
-import { filmsService } from '../../services/film.service';
-import { Spin, Pagination } from 'antd';
+import { useEffect } from 'react'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
+import FilmCard from '../FilmCard/FilmCard'
+import { filmsService } from '../../services/film.service'
+import { Spin, Pagination } from 'antd'
+import './FilmsOnGenres.css'
+import { useParams, useSearchParams } from 'react-router-dom'
+import WishList from '../WishList/WishList'
 
-function FilmsOnGenres({ genre, setId, setIsAddButton }) {
-  const [page, setPage] = useState(1);
-  const queryClient = useQueryClient();
+function FilmsOnGenres() {
+  const queryClient = useQueryClient()
+
+  const { id } = useParams()
+
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  const pageQuery = searchParams.get('page') || 1
 
   const { isLoading, data } = useQuery({
-    queryKey: ['filmsByGenre', page, genre],
-    queryFn: () => filmsService.getData('', genre, page),
+    queryKey: ['filmsByGenre', pageQuery],
+    queryFn: () => filmsService.getData('', id, pageQuery),
     select: (data) => data,
-  });
+  })
 
   useEffect(() => {
     const fetchData = async () => {
-      await queryClient.invalidateQueries('filmsByGenre');
-    };
+      await queryClient.invalidateQueries('filmsByGenre')
+    }
 
-    fetchData();
-  }, [page, genre]);
+    fetchData()
+  }, [pageQuery, id])
 
   const handleChangePage = (newPage) => {
-    setPage(newPage);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+    setSearchParams({ page: newPage })
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   return (
-    <div>
-      <ul>
+    <div className="grid-container">
+      <WishList />
+      <ul className="list">
         {!isLoading ? (
           data.data.results.map((film) => {
             return (
-              <li key={film.id}>
-                <FilmCard
-                  filmData={film}
-                  setWishFilmId={setId}
-                  setIsAddButton={setIsAddButton}
-                />
+              <li key={film.id} className="card-li">
+                <FilmCard filmData={film} page={pageQuery} />
               </li>
-            );
+            )
           })
         ) : (
           <Spin style={{ margin: '0 auto' }} tip="Loading" size="large" />
@@ -49,12 +54,12 @@ function FilmsOnGenres({ genre, setId, setIsAddButton }) {
       <Pagination
         className="pagination"
         onChange={handleChangePage}
-        current={page}
+        current={pageQuery}
         total={data?.data.total_pages}
         showSizeChanger={false}
       />
     </div>
-  );
+  )
 }
 
-export default FilmsOnGenres;
+export default FilmsOnGenres

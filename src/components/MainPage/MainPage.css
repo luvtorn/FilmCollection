@@ -1,15 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 .main-page {
   padding: 20px;
 }
 
 .ant-carousel {
-  font-family: "Montserrat", sans-serif;
+  font-family: montserrat, sans-serif;
   text-transform: uppercase;
   text-wrap: nowrap;
   color: aliceblue;
-  font-size: 24px;
+  font-size: 2vw;
   border-radius: 8px;
-  width: 500px;
+  width: 70vw;
+  max-width: 500px;
   margin: 0 auto;
 }
 
@@ -23,4 +26,8 @@
   margin: 0 auto;
   max-width: 70%;
   border-radius: 8px;
+}
+
+.carousel-item h3 {
+  text-wrap: wrap;
 }

@@ -1,49 +1,50 @@
-import { useState } from "react";
+import './FilmCard.css'
 
-import Modal from "../Modal/Modal.jsx";
-import "./FilmCard.css";
+import { message } from 'antd'
+import { useSearchParams } from 'react-router-dom'
+import modalStore from '../../stores/ModalStore'
+import { observer } from 'mobx-react'
+import wishListStore from '../../stores/WishListStore'
 
-import { StarOutlined } from "@ant-design/icons";
-import { message } from "antd";
+const FilmCard = observer(({ filmData, page }) => {
+  const [messageApi, contextHolder] = message.useMessage()
 
-export default function FilmCard({ filmData, setWishFilmId, isAddButton }) {
-  const [isOpenModal, setIsOpenModal] = useState(false);
-  const [messageApi, contextHolder] = message.useMessage();
+  const openModal = modalStore.openModal
+  const { setId } = wishListStore
+
+  const [searchParams, setSearchParams] = useSearchParams()
 
   const handleIdClick = (id) => {
-    setWishFilmId(id);
+    setId(id)
     messageApi.open({
-      type: "success",
-      content: "Successfully added",
-    });
-  };
+      type: 'success',
+      content: 'Successfully added',
+    })
+  }
+
+  const handleModalOpen = (id) => {
+    openModal()
+    setSearchParams({ page: page ? page : 1, film: id })
+  }
 
   return (
     <>
       {contextHolder}
-      <Modal
-        open={isOpenModal}
-        setIsOpenModal={setIsOpenModal}
-        filmData={filmData}
-      />
-      <div className="film" onClick={() => setIsOpenModal(true)}>
+      <div className="film" onClick={() => handleModalOpen(filmData.id)}>
         <img
           src={`https://image.tmdb.org/t/p/original${filmData.backdrop_path}`}
           alt={filmData.title}
         />
         <p>{filmData.title}</p>
-        <p>
-          Raiting: {filmData.vote_average?.toFixed(2)} <StarOutlined />
-        </p>
       </div>
-      {!isAddButton && (
-        <button
-          className="add-to-wish-btn"
-          onClick={() => handleIdClick(filmData.id)}
-        >
-          Add to Wish List
-        </button>
-      )}
+      <button
+        className="add-to-wish-btn"
+        onClick={() => handleIdClick(filmData.id)}
+      >
+        Add to Wish List
+      </button>
     </>
-  );
-}
+  )
+})
+
+export default FilmCard

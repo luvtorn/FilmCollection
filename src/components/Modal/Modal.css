@@ -2,7 +2,7 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.7);
-  z-index: 100;
+  z-index: 1000;
   display: none;
 }
 
@@ -17,8 +17,7 @@
 
 .modal-content {
   background-color: rgb(63, 65, 65);
-  padding: 20px;
-  width: 80rem;
+  width: 80vw;
 }
 
 .modal-img {
@@ -45,7 +44,7 @@
 }
 
 .description {
-  margin-bottom: 10px;
+  text-wrap: wrap;
 }
 
 .release-date {

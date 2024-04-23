@@ -26,13 +26,17 @@ class FilmsService {
   }
 }
 
-class WishListService {
-  async getData({ id }) {
-    const url = `https://api.themoviedb.org/3/movie/${id}`
-    const data = await axios.get(url, options)
-    return data
+class GetFilmService {
+  async getData(id) {
+    if (id) {
+      const url = `https://api.themoviedb.org/3/movie/${id}`
+      const data = await axios.get(url, options)
+      return data
+    } else {
+      return null;
+    }
   }
 }
 
 export const filmsService = new FilmsService()
-export const wishListService = new WishListService()
+export const getFilmService = new GetFilmService()

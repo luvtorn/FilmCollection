@@ -13,7 +13,7 @@ function MainPage() {
   })
 
   return (
-    <div className="main-page container">
+    <div className="main-page">
       {isLoading ? (
         <h1 style={{ color: 'white' }}>Loading...</h1>
       ) : (
@@ -35,4 +35,4 @@ function MainPage() {
   )
 }
 
-export default memo(MainPage) 
+export default memo(MainPage)

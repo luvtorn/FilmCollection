@@ -1,0 +1,22 @@
+.pagination {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-right: 10px;
+}
+
+.pagination > li {
+  background-color: #fff !important;
+  width: 100%;
+}
+
+.list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.card-li {
+  width: 300px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+}
