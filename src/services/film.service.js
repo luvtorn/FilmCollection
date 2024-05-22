@@ -1,0 +1,55 @@
+import axios from 'axios'
+
+const options = {
+  method: 'GET',
+  headers: {
+    accept: 'application/json',
+    Authorization:
+      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNGU1ZTBiZjU2OTk5MTM2MjVlNTczMmJlMWRmNzgyNiIsInN1YiI6IjY1ZTI4NmRkZGI3MmMwMDE3Y2Y1MDkyYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Es6eAgreUvmnlH11qO6vzVOFGcxENSUqxX3OpRIN81Q',
+  },
+}
+
+class FilmsService {
+  typeOfUrl = {
+    mainPage:
+      'https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1',
+    topFilms:
+      'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1',
+    Genres: 'https://api.themoviedb.org/3/genre/movie/list',
+  }
+
+  async getData(type, genre, page) {
+    const url = genre
+      ? `https://api.themoviedb.org/3/discover/movie?language=en-US&page=${page}&sort_by=popularity.desc&with_genres=${genre}`
+      : this.typeOfUrl[type]
+    return axios.get(url, options)
+  }
+}
+
+class GetFilmService {
+  async getData(id) {
+    if (id) {
+      const url = `https://api.themoviedb.org/3/movie/${id}`
+      const data = await axios.get(url, options)
+      return data
+    } else {
+      return null
+    }
+  }
+}
+
+class GetVideoService {
+  async getData(id) {
+    if (id) {
+      const url = `https://api.themoviedb.org/3/movie/${id}/videos`
+      const data = await axios.get(url, options)
+      return data
+    } else {
+      return null
+    }
+  }
+}
+
+export const getVideoService = new GetVideoService()
+export const filmsService = new FilmsService()
+export const getFilmService = new GetFilmService()
