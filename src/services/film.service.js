@@ -33,10 +33,30 @@ class GetFilmService {
       const data = await axios.get(url, options)
       return data
     } else {
+<<<<<<< HEAD
       return null;
+=======
+      return null
+>>>>>>> third
     }
   }
 }
 
+<<<<<<< HEAD
+=======
+class GetVideoService {
+  async getData(id) {
+    if (id) {
+      const url = `https://api.themoviedb.org/3/movie/${id}/videos`
+      const data = await axios.get(url, options)
+      return data
+    } else {
+      return null
+    }
+  }
+}
+
+export const getVideoService = new GetVideoService()
+>>>>>>> third
 export const filmsService = new FilmsService()
 export const getFilmService = new GetFilmService()

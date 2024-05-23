@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 .wishfilms {
   margin-top: 10px;
 }
 
+=======
+>>>>>>> third
 .delete-btn {
   background-color: red;
   width: 100%;
@@ -17,6 +20,7 @@
   background-color: #c30000;
 }
 
+<<<<<<< HEAD
 .wish-list-enter {
   opacity: 0;
 }
@@ -99,4 +103,20 @@
 
 .wish-content > img {
   width: 30%;
+=======
+.wish-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+}
+
+@media (max-width: 480px) {
+  .film {
+    width: 60%;
+  }
+
+  .delete-btn {
+    width: 60%;
+  }
+>>>>>>> third
 }
