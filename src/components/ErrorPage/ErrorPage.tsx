@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
 
 import './ErrorPage.css'
 
-function ErrorPage() {
+const ErrorPage: FC = () => {
   return (
     <div className="notfound">
       <div className="notfound-404">

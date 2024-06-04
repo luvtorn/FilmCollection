@@ -1,46 +1,48 @@
-import { useEffect } from 'react'
+import { FC, useEffect } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import FilmCard from '../FilmCard/FilmCard'
 import { filmsService } from '../../services/film.service'
 import { Spin, Pagination } from 'antd'
 import './FilmsOnGenres.css'
 import { useParams, useSearchParams } from 'react-router-dom'
-import WishList from '../WishList/WishList'
+import React from 'react'
+import { IResult } from '../../types'
 
-function FilmsOnGenres() {
+const FilmsOnGenres: FC = () => {
   const queryClient = useQueryClient()
 
   const { id } = useParams()
 
   const [searchParams, setSearchParams] = useSearchParams()
 
-  const pageQuery = searchParams.get('page') || 1
+  const pageQuery = searchParams.get('page') || '1'
 
   const { isLoading, data } = useQuery({
     queryKey: ['filmsByGenre', pageQuery],
-    queryFn: () => filmsService.getData('', id, pageQuery),
+    queryFn: () => filmsService.getFilmsByGenre(id ?? '', +pageQuery),
     select: (data) => data,
   })
 
   useEffect(() => {
     const fetchData = async () => {
-      await queryClient.invalidateQueries('filmsByGenre')
+      await queryClient.invalidateQueries({
+        queryKey: ['filmsByGenre', pageQuery, id],
+      })
     }
 
     fetchData()
   }, [pageQuery, id])
 
-  const handleChangePage = (newPage) => {
-    setSearchParams({ page: newPage })
+  const handleChangePage = (newPage: number) => {
+    setSearchParams({ page: newPage.toString() })
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   return (
     <div className="grid-container">
-      <WishList />
       <ul className="list">
         {!isLoading ? (
-          data.data.results.map((film) => {
+          data?.results.map((film: IResult) => {
             return (
               <li key={film.id} className="card-li">
                 <FilmCard filmData={film} page={pageQuery} />
@@ -54,8 +56,8 @@ function FilmsOnGenres() {
       <Pagination
         className="pagination"
         onChange={handleChangePage}
-        current={pageQuery}
-        total={data?.data.total_pages}
+        current={+pageQuery}
+        total={data?.total_pages}
         showSizeChanger={false}
       />
     </div>

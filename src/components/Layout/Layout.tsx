@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Outlet } from 'react-router-dom'
 
 import './Layout.css'
-import Tabs from '../Tabs/Tabs'
+import Tabs from '../Tabs/Tabs.tsx'
 
-const Layout = () => {
+const Layout: FC = () => {
   return (
     <div className="container">
       <Tabs />

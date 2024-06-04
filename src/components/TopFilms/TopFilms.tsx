@@ -1,15 +1,15 @@
 import { useQuery } from '@tanstack/react-query'
 import { Spin, Input } from 'antd'
-import FilmCard from '../FilmCard/FilmCard'
-import { filmsService } from '../../services/film.service'
+import FilmCard from '../FilmCard/FilmCard.tsx'
+import { filmsService } from '../../services/film.service.ts'
 import './TopFilms.css'
 import { useSearchParams } from 'react-router-dom'
-import WishList from '../WishList/WishList'
+import React, { FC } from 'react'
 
-export default function TopFilms({ setId, setIsAddButton }) {
+const TopFilms: FC = () => {
   const { isLoading, data } = useQuery({
     queryKey: ['topFilms'],
-    queryFn: () => filmsService.getData('topFilms'),
+    queryFn: () => filmsService.getTopFilms(),
     select: (data) => data,
   })
 
@@ -18,29 +18,22 @@ export default function TopFilms({ setId, setIsAddButton }) {
 
   return (
     <div className="top-films">
-      <div className="top-films-menu">
-        <Input
-          className="find-film-input"
-          placeholder="Find your film"
-          value={filterFilm}
-          onChange={(e) => setSearchParams({ find: e.target.value })}
-        />
-        <WishList />
-      </div>
+      <Input
+        className="find-film-input"
+        placeholder="Find your film"
+        value={filterFilm}
+        onChange={(e) => setSearchParams({ find: e.target.value })}
+      />
       <ul className="list">
         {!isLoading ? (
-          data.data.results
+          data?.results
             .filter((film) =>
               film.title.toLowerCase().includes(filterFilm.toLowerCase()),
             )
             .map((film) => {
               return (
                 <li className="card-li" key={film.id}>
-                  <FilmCard
-                    filmData={film}
-                    setWishFilmId={setId}
-                    setIsAddButton={setIsAddButton}
-                  />
+                  <FilmCard filmData={film} />
                 </li>
               )
             })
@@ -51,3 +44,5 @@ export default function TopFilms({ setId, setIsAddButton }) {
     </div>
   )
 }
+
+export default TopFilms

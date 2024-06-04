@@ -1,12 +1,10 @@
-<<<<<<< HEAD
 .modal {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 1000;
   display: none;
-=======
-<<<<<<< Updated upstream
+}
 dialog {
   width: 400px;
   padding: 1rem;
@@ -14,7 +12,7 @@ dialog {
   border-radius: 10px;
   z-index: 100;
   overflow-x: hidden;
-=======
+}
 .modal {
   width: 100vw;
   min-height: 100vh;
@@ -33,10 +31,7 @@ dialog {
 }
 
 .modal-content {
->>>>>>> Stashed changes
   background-color: rgb(63, 65, 65);
-
->>>>>>> third
 }
 
 .modal.active {
@@ -48,7 +43,6 @@ dialog {
   flex-direction: row;
 }
 
-<<<<<<< HEAD
 .modal-content {
   background-color: rgb(63, 65, 65);
   width: 80vw;
@@ -65,22 +59,19 @@ dialog {
 
 .filmInfo {
   display: flex;
-=======
-<<<<<<< Updated upstream
+}
 .close-icon::before {
   transform: rotate(45deg);
 }
 
 .close-icon::after {
   transform: rotate(-45deg);
-=======
+}
 .filmInfo {
   display: flex;
   flex-direction: column;
   height: 90vh;
   padding: 10px;
->>>>>>> Stashed changes
->>>>>>> third
 }
 
 .details {

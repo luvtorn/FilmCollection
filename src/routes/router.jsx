@@ -1,10 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom'
-import Layout from '../components/Layout/Layout'
-import MainPage from '../components/MainPage/MainPage'
-import TopFilms from '../components/TopFilms/TopFilms'
-import Modal from '../components/Modal/Modal'
-import FilmsOnGenres from '../components/FilmsOnGenres/FilmsOnGenres'
-import ErrorPage from '../components/ErrorPage/ErrorPage'
+import Layout from '../components/Layout/Layout.tsx'
+import MainPage from '../components/MainPage/MainPage.tsx'
+import TopFilms from '../components/TopFilms/TopFilms.tsx'
+import Modal from '../components/Modal/Modal.tsx'
+import FilmsOnGenres from '../components/FilmsOnGenres/FilmsOnGenres.tsx'
+import ErrorPage from '../components/ErrorPage/ErrorPage.tsx'
+import WishList from '../components/WishList/WishList.tsx'
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
       {
         path: 'top20/',
         element: <TopFilms />,
+      },
+      {
+        path: 'wishlist',
+        element: <WishList />,
       },
       {
         path: 'genres/:id',
