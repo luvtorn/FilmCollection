@@ -22,8 +22,41 @@ li {
 }
 
 .find-film-input {
+<<<<<<< Updated upstream
   margin: 0 auto;
   width: 400px;
   margin-bottom: 30px;
   color: #000;
+=======
+  color: #000;
+  font-size: 20px;
+  width: 50%;
+  margin: 10px auto;
+}
+
+.top-films-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  justify-content: start;
+}
+
+.card-li {
+  width: 300px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+>>>>>>> Stashed changes
+}
+
+.null {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
