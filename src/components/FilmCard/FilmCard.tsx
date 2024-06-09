@@ -2,8 +2,9 @@ import './FilmCard.css'
 
 import { message } from 'antd'
 import { useSearchParams } from 'react-router-dom'
-import modalStore from '../../stores/ModalStore.tsx'
 import { observer } from 'mobx-react'
+import modalStore from '../../stores/ModalStore.tsx'
+
 import wishListStore from '../../stores/WishListStore.tsx'
 import { FC } from 'react'
 import { IResult } from '../../types'

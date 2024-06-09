@@ -3,8 +3,9 @@ import '../../index.css'
 import './WishList.css'
 import { observer } from 'mobx-react-lite'
 import wishListStore from '../../stores/WishListStore.tsx'
-import modalStore from '../../stores/ModalStore.tsx'
 import { useSearchParams } from 'react-router-dom'
+import modalStore from '../../stores/ModalStore.tsx'
+
 import React from 'react'
 import { IResult } from '../../types.ts'
 

@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import './Modal.css'
 import { useSearchParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
